@@ -14,7 +14,7 @@ int main()
     float saldo1[tam], saldo2[tam], saldo3[tam];
     while(op!=5)
     {
-        printf("\n1-Incluir\n2-Deposito\n3-Saque\n4-Saldo\n5-Sair");
+        printf("\n1-Incluir\n2-Deposito\n3-Saque\n4-Saldo\n5-Sair\n");
         scanf("%d",&op);
         switch(op)
         {
