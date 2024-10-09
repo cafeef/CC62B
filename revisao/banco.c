@@ -8,7 +8,7 @@ void saque(int cod, float valor, float vsaldo[]);
 int main()
 {
     int tam, op=0, ok1 = 0, ok2 = 0, ok3 = 0;
-    printf("Informe a quantidade de clientes:");
+    printf("Informe a quantidade de clientes: ");
     scanf("%d",&tam);
     int codigo1[tam], i, codigo2[tam], codigo3[tam];
     float saldo1[tam], saldo2[tam], saldo3[tam];
@@ -18,13 +18,14 @@ int main()
         scanf("%d",&op);
         switch(op)
         {
-            case 1:{
+            case 1: {
                 int agencia;
-                printf("Informe a agência: ");
+                printf("Informe a agencia: ");
                 scanf("%d", &agencia);
-                if (agencia == 1 && ok1 == 0)
+                if (agencia == 1 && ok1 == 0) {
                     incluir(codigo1, saldo1, tam);
                     ok1 = 1;
+                }  
                 else {
                     if (agencia == 2 && ok2 == 0) {
                         incluir(codigo2, saldo2, tam);
@@ -39,7 +40,7 @@ int main()
                             if (agencia==1 || agencia==2 || agencia==3)
                                 printf("Agencia ja incluida");
                             else
-                               printf("Agência não existe!");
+                               printf("Agencia nao existe!");
                         }
                     }
                 }
@@ -48,11 +49,11 @@ int main()
             case 2:{
                 float valor;
                 int cod, agencia;
-                printf("Informe codigo do cliente:");
+                printf("Informe codigo do cliente: ");
                 scanf("%d",&cod);
-                printf("Informe valor do deposito:");
+                printf("Informe valor do deposito: ");
                 scanf("%f",&valor);
-                printf("Informe a agência: ");
+                printf("Informe a agencia: ");
                 scanf("%d", &agencia);
                 if (agencia == 1)
                     depositar(cod, valor, saldo1);
@@ -63,16 +64,16 @@ int main()
                         if (agencia == 3)
                             depositar(cod, valor, saldo3);
                         else
-                            printf("\nAgência não existe!");
+                            printf("\nAgencia nao existe!");
             }break;
             case 3:{
                 float valor, s;
                 int cod, agencia;
-                printf("Informe codigo do cliente:");
+                printf("Informe codigo do cliente: ");
                 scanf("%d",&cod);
-                printf("Informe valor do saque:");
+                printf("Informe valor do saque: ");
                 scanf("%f",&valor);
-                printf("Informe a agência: ");
+                printf("Informe a agencia: ");
                 scanf("%d", &agencia);
                 if (agencia == 1) {
                     s = verSaldo(cod, saldo1);
@@ -98,16 +99,16 @@ int main()
                                 printf("\nSaldo insuficiente!");
                         }
                         else
-                            printf("\nAgência não existe!");
+                            printf("\nAgencia nao existe!");
                     }
                 }
             }break;
             case 4:{
                 int cod, agencia;
                 float s;
-                printf("\nInforme codigo do cliente:");
+                printf("\nInforme codigo do cliente: ");
                 scanf("%d",&cod);
-                printf("Informe a agência: ");
+                printf("Informe a agencia: ");
                 scanf("%d", &agencia);
                 if (agencia == 1) {
                     s = verSaldo(cod, saldo1);
