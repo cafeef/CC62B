@@ -37,7 +37,7 @@ int main (){
         for (j = 0; j < n; j++) {
             elemento = rand() % 26;
             letra = alfabeto[elemento];
-            if (j == 0)
+            if (!(j))
                 nomes[i][j] = toupper(letra);
             else 
                 nomes[i][j] = letra;
