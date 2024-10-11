@@ -12,9 +12,14 @@ cada criança!
 */
 
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <time.h>
+
 int main (){
-    int m, n, i, quantidades[m], albafeto[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-    char nomes[m][n];
+    int m, n, i, quantidades[m], j, elemento;
+    char letra, nomes[m][n], alfabeto[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
     do {
         printf("Informe a quantidade de crianças: ");
         scanf("%d", &m);
@@ -26,5 +31,19 @@ int main (){
         quantidades[i] = n;
     } while (n < 3 || n > 10); 
     }
+    srand(time(NULL));
+    for (i = 0; i < m; i++) {
+        n = quantidades[i];
+        for (j = 0; j < n; j++) {
+            elemento = rand() % 26;
+            letra = alfabeto[elemento];
+            if (j == 0)
+                nomes[i][j] = toupper(letra);
+            else 
+                nomes[i][j] = letra;
+        }
+        printf("Nome da criança %d: %s\n", i + 1, nomes[i]);
+    }
+
     
 }
