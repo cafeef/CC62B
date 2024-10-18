@@ -16,13 +16,13 @@ int main() {
     if (retorno == NULL)
         printf("Número não encontrado");
     else
-        printf("Endereço de %d: %d", valor, (void*)retorno);
+        printf("Endereço de %d: %p", valor, (void*)retorno);
 }
 
 int* buscaValor(int *vetor, int valor) {
     int i;
     for (i = 0; i < 5; i++) {
-        if (*vetor == valor)
+        if (*(vetor + i) == valor)
             return vetor;
     }
     return NULL;
