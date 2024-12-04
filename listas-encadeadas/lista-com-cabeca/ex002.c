@@ -17,21 +17,19 @@ TNo *alocaNo(int k);
 void insereListaI(TCabeca *lista, int k);
 void removeListaI(TCabeca *lista);
 void imprime(TNo *lista);
+void insereListaF(TCabeca *lista, int k);
+void removerListaF (TCabeca *lista);
 //insere lista f e remove lista f - tarefa
 
 int main() {
     TCabeca *cabeca = criaCabeca();
     insereListaI(cabeca, 8);
     insereListaI(cabeca, 3);
+	imprime(cabeca->inicio);
+	insereListaF(cabeca, 7);
     imprime(cabeca->inicio);
-    removeListaI(cabeca);
-    imprime(cabeca->inicio);
-    removeListaI(cabeca);
-    imprime(cabeca->inicio);
-    printf("Número de nós: %d\n", cabeca->cont);
-    while(cabeca->inicio) {
-    	removeListaI(cabeca);
-    }
+	removerListaF(cabeca);
+	imprime(cabeca->inicio);
 }
 
 TCabeca *criaCabeca() {
@@ -103,5 +101,35 @@ void removeListaI(TCabeca *lista) {
 		if (!lista->inicio) 
 			lista->fim = NULL;
 
+	}
+}
+
+void insereListaF(TCabeca *lista, int k) {
+	if (!lista->inicio) insereListaI(lista, k);
+	else {
+		TNo *novo = alocaNo(k);
+		TNo *aux = lista->fim;
+		if (novo) {
+			aux->prox = novo;
+			lista->fim = novo;
+			lista->cont++;
+		}
+ 	}
+}
+
+void removerListaF (TCabeca *lista) {
+	if(!lista->inicio) {
+		printf("Lista vazia!\n");
+		return;
+	}
+	else {
+		TNo *aux = lista->fim;
+		TNo *penultimo = lista->inicio;
+		while (penultimo->prox != lista->fim)
+			penultimo = penultimo->prox;
+		penultimo->prox = NULL;
+		lista->fim = penultimo;
+		free(aux);
+		aux = NULL;
 	}
 }
