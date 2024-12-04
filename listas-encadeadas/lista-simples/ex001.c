@@ -7,6 +7,7 @@ typedef struct No {
     struct No *prox;
 } TNo;
 
+int alocaK(int *k);
 TNo *alocaNo(int k);
 void InsereLista(TNo **lista, int k);
 void InsereListaFinal(TNo **lista, int k);
@@ -22,22 +23,76 @@ void removeLista(TNo **lista, int k);
 int main() {
     SetConsoleOutputCP(CP_UTF8);
     TNo *lista = NULL, *endereco = NULL;
-    InsereLista(&lista, 8);
-    InsereListaFinal(&lista, 10);
-    InsereListaFinal(&lista, 14);
-    InsereListaFinal(&lista, 10);
-    imprimeLista(lista);
-    endereco = buscar(lista, 10);
-    if (!endereco) 
-        printf("Não encontrado.");
-    else 
-        printf("\nEndereço: %x", endereco);
-    printf("\nMaior valor: %d", valor_max(lista));
-    printf("\nMenor valor: %d", valor_min(lista));
-    printf("\nSoma: %d", soma(lista));
-    printf("\nTamanho: %d", tamanho(lista));
-    printf("\nFrequência número 10: %d", frequencia(lista, 10));
-    removeLista(&lista, 20);
+    int op = 0, k = 0;
+    while (op != 11) {
+        printf("\nEscolha uma das opções abaixo:\n1 - Inserir no começo\n2 - Inserir no final\n3 - Imprimir lista\n4 - Buscar elemento na lista\n5 - Valor máximo da lista\n6 - Valor mínimo da lista\n7 - Soma dos elementos\n8 - Tamanho da lista\n9 - Frequência de um elemento na lista\n10 - Remover um elemento da lista\n11 - Sair\n");
+        scanf("%d", &op);
+        switch (op) {
+            case 1:
+                alocaK(&k);
+                InsereLista(&lista, k);
+                break;
+            case 2:
+                alocaK(&k);
+                InsereListaFinal(&lista, k);
+                break;
+            case 3:
+                printf("Lista: ");
+                imprimeLista(lista);
+                Sleep(5000);
+                break;
+            case 4:
+                alocaK(&k);
+                endereco = buscar(lista, k);
+                if(!endereco) printf("Elemento não encontrado na lista.\n");
+                else printf("Endereço de %d: %p", k, endereco);
+                Sleep(5000);
+                break;
+            case 5:
+                printf("O valor máximo é: %d\n", valor_max(lista));
+                Sleep(5000);
+                break;
+            case 6:
+                printf("O valor mínimo é: %d\n", valor_min(lista));
+                Sleep(5000);
+                break;
+            case 7:
+                if (!soma(lista)) printf("Lista vazia!\n");
+                else printf("A soma dos elementos é: %d\n", soma(lista));
+                Sleep(5000);
+                break;
+            case 8:
+                if (!tamanho(lista)) printf("Lista vazia!");
+                else printf("O tamanho da lista é: %d\n", tamanho(lista));
+                Sleep(5000);
+                break;
+            case 9:
+                alocaK(&k);
+                if (!frequencia(lista, k)) printf("Elemento não está na lista!\n");
+                else printf("A frequência do elemento na lista é: %d\n", frequencia(lista, k));
+                Sleep(5000);
+                break;
+            case 10:
+                alocaK(&k);
+                removeLista(&lista, k);
+                break;
+            case 11:
+                printf("Encerrando o programa...\n");
+                free(lista);
+                lista = NULL;
+                printf("Programa encerrado.\n");
+                exit(1);
+            default:
+                printf("Opção inválida, digite novamente.\n");
+                break;
+        }
+        system("cls");
+    }
+}
+
+int alocaK(int *k) {
+    printf("Informe o elemento: ");
+    scanf("%d", k);
 }
 
 TNo *alocaNo(int k) {
@@ -151,7 +206,5 @@ void removeLista(TNo **lista, int k) {
             anterior->prox = endereco->prox; // Ajustar ponteiro
             free(endereco); // Desalocar memória do nó removido
         }
-        printf("\n");
-        imprimeLista(*lista);      
     }
 }
