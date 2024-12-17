@@ -32,7 +32,7 @@ void desempilhar(TNo **p) { //pop
         free(aux);
         aux = NULL;
     }
-    else printf("Lista vazia!\n");
+    else printf("Pilha vazia!\n");
 }
 
 void imprimir(TNo *p) {
@@ -42,13 +42,11 @@ void imprimir(TNo *p) {
             p = p->prox;
         }
     }
-    else printf("Lista vazia!\n");
+    else printf("Pilha vazia!\n");
 }
 
 int main() {
     TNo *lista = NULL;
-    empilhar(&lista, 10);
-    empilhar(&lista, 18);
     desempilhar(&lista);
     empilhar(&lista, 16);
     imprimir(lista);
