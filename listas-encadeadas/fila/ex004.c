@@ -26,8 +26,10 @@ int main() {
     SetConsoleOutputCP(CP_UTF8);
     #endif
     TCabeca *fila = criacabeca();
+    InsereAluno(fila, "Ana", 3);
+    InsereAluno(fila, "Victor", 1);
     InsereAluno(fila, "Fernanda", 2);
-    InsereAluno(fila, "Lucas", 2);
+    InsereAluno(fila, "Jéssica", 4);
     Imprimir(fila->inicio);
 }
 
@@ -60,10 +62,21 @@ void InsereAluno(TCabeca *fila, const char *nome, int periodo) {
             fila->fim = novo;
             fila->cont++;
         }
+        else if (periodo < fila->inicio->periodo) {
+            novo->prox = fila->inicio;
+            fila->inicio = novo;
+        }
         else {
-            TAluno *aux = fila->fim;
-            aux->prox = novo;
-            fila->fim = novo;
+            TAluno *aux = fila->inicio;
+            TAluno *ant = NULL;
+            while (aux && aux->periodo <= periodo) {
+                ant = aux;
+                aux = aux->prox;
+            }
+            novo->prox = aux;
+            ant->prox = novo;
+            if (!aux) 
+                fila->fim = novo;
             fila->cont++;
         }
     }
@@ -73,7 +86,7 @@ void InsereAluno(TCabeca *fila, const char *nome, int periodo) {
 void Imprimir(TAluno *fila) {
     if (fila) {
         while (fila) {
-            printf("Nome: %s - Período: %d\n", fila->nome, fila->periodo);
+            printf("Nome: %s | Período: %d\n", fila->nome, fila->periodo);
             fila = fila->prox;
         }
     }
