@@ -131,20 +131,20 @@ void RemoverDocumento(TDocumento **fila) {
         char nome[30];
         printf("Informe nome do documento: ");
         scanf("%s", nome);
-        if (!strcmp((*fila)->nome, aux->nome))
+        if (!strcmp((*fila)->nome, nome))
             ImprimirProximo(fila);
         else {
             while(aux) {
-            if(!strcmp(aux->nome, nome)) {
-                ant->prox = aux->prox;
-                free(aux);
-                aux = NULL;
-                break;
-            }
-            else {
-                ant = aux;
-                aux = aux->prox;
-            }
+                if(!strcmp(aux->nome, nome)) {
+                    ant->prox = aux->prox;
+                    free(aux);
+                    aux = NULL;
+                    break;
+                }
+                else {
+                    ant = aux;
+                    aux = aux->prox;
+                }
         }
         if (!aux) printf("Documento não está na fila!\n");
         }
